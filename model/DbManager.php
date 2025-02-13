@@ -12,7 +12,7 @@
  const DBNAME = ''; // à définir
  const CHARSET = 'utf8';
  const LOGIN = 'root';
- const MDP = '';
+ const MDP = 'db_WikiMH';
 
  class DbManager{
     private static ?\PDO $cnx = null;
