@@ -53,5 +53,170 @@ class DbManager
             }
         }
         return self::$cnx;
+
+
+
     }
+
+    
+    /**
+     * Obtient tous les monstres de la base de données
+     * @return bool|string a JSON encoded string on success or FALSE on failure.
+     */
+    public static function getMonsters(){
+        $lesMonstres = array();
+
+        try{
+            if(self::$cnx == NULL){
+                self::$cnx = DbManager::getConnexion();
+            }
+
+            $sql = "SELECT M_id,M_Nom,M_Type,M_Taille,M_Poids,M_Faiblesse,M_description,M_Element,Im_id,T_Id FROM Monstre";
+            $stmt = self::$cnx->query($sql);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $lesMonstres[] = $row;
+            }
+
+        }
+        catch(PDOException $e){
+            die('Erreur : '.$e->getMessage());
+        }
+
+        return json_encode($lesMonstres);
+
+    }
+
+    /**
+     * Récupère un monstre spécifique
+     * @param int $idMonster L'id du monstre
+     * @return bool|string a JSON encoded string on success or FALSE on failure.
+     */
+    public static function getMonster(int $idMonster){
+        $theMonster = array();
+
+        try{
+            if(self::$cnx == NULL){
+                self::$cnx = DbManager::getConnexion();
+            }
+
+            $sql = "SELECT M_id,M_Nom,M_Type,M_Taille,M_Poids,M_Faiblesse,M_description,M_Element,Im_id,T_Id 
+                    FROM Monstre
+                    WHERE M_id = $idMonster";
+
+            $stmt = self::$cnx->query($sql);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $theMonster[] = $row;
+            }
+
+        }
+        catch(PDOException $e){
+            die('Erreur : '.$e->getMessage());
+        }
+
+        return json_encode($theMonster); 
+    }
+
+
+
+    /**
+     * Récupère les armes en fonction de ses paramètres
+     * 
+     * @example Récupérer toutes les armes
+     * ```php
+     * echo getWeapons(); //Récupérer toutes les armes
+     * ```
+     * 
+     * * @example  Récupérer les armes avec un tranchant de 50
+     * ```php
+     * echo getWeapons(50); // Récupérer les armes avec un tranchant de 50
+     * ```
+     * 
+     * * @example Récupérer les armes avec un élément "FIRE" et un dégât physique de 100
+     * ```php
+     * echo getWeapons(null, "FIRE", 100); //Récupérer les armes avec un élément "FIRE" et un dégât physique de 100
+     * ```
+     * 
+     * * @example  Récupérer les armes avec un type "Épée" et un élément "Glace"
+     * ```php
+     * echo getWeapons(null, "ICE", null, "Dual Blades"); // Récupérer les armes avec un type "Dual Blades" et un élément "ICE"
+     * ```
+     * 
+     * 
+     * @param int $tranchant Le tranchant
+     * @param string $element L'élément de l'arme
+     * @param int $degat Les dégats physiques de l'arme
+     * @param string $type Le type d'arme
+     * 
+     * @return bool|string a JSON encoded string on success or FALSE on failure.
+     */
+    public static function getWeapons(int $tranchant, string $element, int $degat, string $type){
+
+        $lesArmes = array();
+
+        try{
+            if(self::$cnx == NULL){
+                self::$cnx = DbManager::getConnexion();
+            }
+
+            $sql = "SELECT Eq_Id,A_Type,A_tranchant,A_Element,A_DegatPhysique,Im_id 
+                    FROM Arme;";
+
+            $stmt = self::$cnx->query($sql);
+
+            $conditions = [];
+            $params = [];
+
+            if (!is_null($tranchant)) {
+                $conditions[] = "A_tranchant = :tranchant";
+                $params[':tranchant'] = $tranchant;
+            }
+            if (!is_null($element)) {
+                $conditions[] = "A_Element = :element";
+                $params[':element'] = $element;
+            }
+            if (!is_null($degat)) {
+                $conditions[] = "A_DegatPhysique = :degat";
+                $params[':degat'] = $degat;
+            }
+            if (!is_null($type)) {
+                $conditions[] = "A_Type = :type";
+                $params[':type'] = $type;
+            }
+    
+            // Ajout de la clause WHERE si nécessaire
+            if (!empty($conditions)) {
+                $sql .= " WHERE " . implode(" AND ", $conditions);
+            }
+    
+            $stmt = self::$cnx->prepare($sql);
+    
+            // Liaison des paramètres
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value);
+            }
+    
+            $stmt->execute();
+    
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $lesArmes[] = $row;
+            }
+
+        }
+        catch(PDOException $e){
+            die('Erreur : '.$e->getMessage());
+        }
+
+        return json_encode($lesArmes);
+
+    }
+
+
+
+
+
+
 }
