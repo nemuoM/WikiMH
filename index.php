@@ -18,7 +18,7 @@ define('ROOT', __DIR__);
 // DEFAULT_CONTROLLER : Nom du contrôleur par défaut si aucun n'est spécifié
 define('DEFAULT_CONTROLLER', 'view');
 // DEFAULT_ACTION : Nom de l'action par défaut si aucune n'est spécifiée
-define('DEFAULT_ACTION', 'accueil');
+define('DEFAULT_ACTION', 'home');
 
 // Inclusion du fichier d'autoload pour charger automatiquement les classes nécessaires
 require_once ROOT . '/autoload.php';
@@ -34,17 +34,6 @@ if (isset($_GET) && !empty($_GET)) {
     // Valeurs par défaut si aucun paramètre n'est spécifié dans l'URL
     $controller = DEFAULT_CONTROLLER;
     $action = DEFAULT_ACTION;
-}
-
-// Gestion de la réinitialisation de la base de données
-if ($controller == 'reinitilize') {
-    // Inclusion du gestionnaire de base de données
-    require_once 'model/DbManager.php';
-    // Appel de la méthode pour réinitialiser la base de données
-    DbManager::reset();
-    // Redirection vers la page d'accueil après la réinitialisation
-    header('Location: /');
-    exit();
 }
 
 // Stockage des paramètres supplémentaires de l'URL dans un tableau associatif
@@ -63,7 +52,7 @@ $filename = ROOT . '/controller/' . $controller . '.php';
 if (file_exists($filename)) {
     // Inclusion du fichier du contrôleur
     require_once ROOT . '/controller/' . $controller . '.php';
-    
+
     // Vérification de l'existence de la méthode correspondant à l'action demandée
     if (method_exists($controller, $action)) {
         // Appel de la méthode du contrôleur avec les paramètres récupérés
@@ -76,5 +65,3 @@ if (file_exists($filename)) {
     // Redirection vers une page d'erreur si le fichier du contrôleur n'existe pas
     header('Location: ' . SERVER_URL . '/erreur/');
 }
-
-?>
