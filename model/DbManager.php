@@ -7,14 +7,15 @@
  * @date: 02/2025
  */
 
- const HOST = '127.0.0.1';
- const PORT = '3306';
- const DBNAME = ''; // à définir
- const CHARSET = 'utf8';
- const LOGIN = 'root';
- const MDP = 'db_WikiMH';
+const HOST = '127.0.0.1';
+const PORT = '3306';
+const DBNAME = 'db_WikiMH';
+const CHARSET = 'utf8';
+const LOGIN = 'root';
+const MDP = '';
 
- class DbManager{
+class DbManager
+{
     private static ?\PDO $cnx = null;
 
     /**
@@ -40,7 +41,8 @@
      * @global string LOGIN Le nom d'utilisateur pour la connexion à la base de données.
      * @global string MDP Le mot de passe pour la connexion à la base de données.
      */
-    public static function getConnexion() {
+    public static function getConnexion()
+    {
         if (self::$cnx == null) {
             try {
                 $dsn = 'mysql:host=' . HOST . ';port=' . PORT . ';dbname=' . DBNAME . ';charset=' . CHARSET;
@@ -52,5 +54,4 @@
         }
         return self::$cnx;
     }
- }
-?>
+}
