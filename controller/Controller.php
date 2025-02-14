@@ -4,8 +4,8 @@
  * /controller/Controller.php
  * class technique pour définir les membres communs aux controllers
  * 
- * @author M.MORABET
- * @date 09/2023
+ * @author Moumen
+ * @date 02/2024
  */
 
 class Controller
