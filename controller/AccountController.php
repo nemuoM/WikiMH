@@ -37,15 +37,25 @@ class AccountController extends Controller
         ) {
             $email = self::serialize($_POST['email']);
             $username = self::serialize($_POST['username']);
-            $mdp = self::serialize($_POST['pwd']);
+            $pwd = self::serialize($_POST['pwd']);
 
             $email = strtolower($email);
 
-            //Hachage du mdp avec Bcrypt
+            //Hachage du pwd avec Bcrypt
             $cost = ['cost' => 10];
-            $mdp = password_hash($mdp, PASSWORD_BCRYPT, $cost);
+            $pwd = password_hash($pwd, PASSWORD_BCRYPT, $cost);
 
-            AccountManager::addUser($email, $username, $mdp);
+            DbManager::addUser($email, $username, $pwd);
+        }
+    }
+
+    public static function login($params)
+    {
+        if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pwd']) && !empty($_POST['pwd'])) {
+            $username = self::serialize($_POST['username']);
+            $pwd = self::serialize($_POST['pwd']);
+
+            DbManager::getConnexion($username, $pwd, true);
         }
     }
 }

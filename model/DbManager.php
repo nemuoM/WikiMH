@@ -55,7 +55,66 @@ class DbManager
         return self::$cnx;
     }
 
+    public static function addUser($email, $username, $mdp)
+    {
+        /*
+        CREATE TABLE Utilisateur(
+            U_id VARCHAR(5),
+            U_Mail VARCHAR(255),
+            U_Pseudo VARCHAR(50),
+            U_MotDePasse VARCHAR(255),
+            PRIMARY KEY(U_id)
+        );
+         */
+        try {
+            $sql = 'INSERT Utilisateur(U_mail, U_Pseudo, U_MotDePasse)';
+            $sql .= 'VALUES (:m, :p, :mdp)';
 
+            $stmt = self::$cnx->prepare($sql);
+            $stmt->bindParam(':m', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':p', $username, PDO::PARAM_STR);
+            $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+
+            $stmt->execute();
+            $_SESSION['email'] = $email;
+            $_SESSION['username'] = $username;
+
+            header('Location: ' . SERVER_URL . '/welcome/');
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    public static function getUser($username, $mdp, $isConnection)
+    {
+        try {
+            $sql = 'SELECT U_mail, U_Pseudo, U_MotDePasse FROM Utilisateurs WHERE U_Pseudo = :u';
+
+            $stmt = self::$cnx->prepare($sql);
+            $stmt->bindParam(':u', $username, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $row = $stmt->fetch();
+            if ($row && $isConnection) {
+                $mail = $row['U_mail'];
+                $mdpH = $row['U_MotDePasse'];
+
+                if (password_verify($mdp, $mdpH)) {
+                    $_SESSION['email'] = $mail;
+                    $_SESSION['username'] = $username;
+                    echo json_encode(['success' =>
+                    'Échec de la connexion. Veuillez vérifier vos identifiants.']);
+                } else {
+                    echo json_encode(['error' => 'Échec de la connexion. Veuillez vérifier vos identifiants.']);
+                }
+            } else {
+                echo json_encode(['error' => 'Échec de la connexion. Veuillez vérifier vos identifiants.']);
+                return false;
+            }
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
 
 
     /**
