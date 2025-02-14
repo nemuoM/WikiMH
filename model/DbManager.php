@@ -53,21 +53,21 @@ class DbManager
             }
         }
         return self::$cnx;
-
-
-
     }
 
-    
+
+
+
     /**
      * Obtient tous les monstres de la base de données
      * @return bool|string a JSON encoded string on success or FALSE on failure.
      */
-    public static function getMonsters(){
+    public static function getMonsters()
+    {
         $lesMonstres = array();
 
-        try{
-            if(self::$cnx == NULL){
+        try {
+            if (self::$cnx == NULL) {
                 self::$cnx = DbManager::getConnexion();
             }
 
@@ -75,17 +75,14 @@ class DbManager
             $stmt = self::$cnx->query($sql);
             $stmt->execute();
 
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $lesMonstres[] = $row;
             }
-
-        }
-        catch(PDOException $e){
-            die('Erreur : '.$e->getMessage());
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
         }
 
         return json_encode($lesMonstres);
-
     }
 
     /**
@@ -93,11 +90,12 @@ class DbManager
      * @param int $idMonster L'id du monstre
      * @return bool|string a JSON encoded string on success or FALSE on failure.
      */
-    public static function getMonster(int $idMonster){
+    public static function getMonster(int $idMonster)
+    {
         $theMonster = array();
 
-        try{
-            if(self::$cnx == NULL){
+        try {
+            if (self::$cnx == NULL) {
                 self::$cnx = DbManager::getConnexion();
             }
 
@@ -108,16 +106,14 @@ class DbManager
             $stmt = self::$cnx->query($sql);
             $stmt->execute();
 
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $theMonster[] = $row;
             }
-
-        }
-        catch(PDOException $e){
-            die('Erreur : '.$e->getMessage());
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
         }
 
-        return json_encode($theMonster); 
+        return json_encode($theMonster);
     }
 
 
@@ -153,12 +149,13 @@ class DbManager
      * 
      * @return bool|string a JSON encoded string on success or FALSE on failure.
      */
-    public static function getWeapons(int $tranchant, string $element, int $degat, string $type){
+    public static function getWeapons(int $tranchant, string $element, int $degat, string $type)
+    {
 
         $lesArmes = array();
 
-        try{
-            if(self::$cnx == NULL){
+        try {
+            if (self::$cnx == NULL) {
                 self::$cnx = DbManager::getConnexion();
             }
 
@@ -186,37 +183,28 @@ class DbManager
                 $conditions[] = "A_Type = :type";
                 $params[':type'] = $type;
             }
-    
+
             // Ajout de la clause WHERE si nécessaire
             if (!empty($conditions)) {
                 $sql .= " WHERE " . implode(" AND ", $conditions);
             }
-    
+
             $stmt = self::$cnx->prepare($sql);
-    
+
             // Liaison des paramètres
             foreach ($params as $key => $value) {
                 $stmt->bindValue($key, $value);
             }
-    
+
             $stmt->execute();
-    
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $lesArmes[] = $row;
             }
-
-        }
-        catch(PDOException $e){
-            die('Erreur : '.$e->getMessage());
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
         }
 
         return json_encode($lesArmes);
-
     }
-
-
-
-
-
-
 }
