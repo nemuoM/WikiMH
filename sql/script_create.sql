@@ -164,12 +164,20 @@ INSERT INTO TypeMonstre (T_Id, T_Nom) VALUES
 
 -- Insertion des types d'arme
 INSERT INTO Type_Arme (TA_id, Ta_Nom) VALUES
-('TA0001', 'Epée'),
-('TA0002', 'Hache'),
-('TA0003', 'Arc'),
-('TA0004', 'Lance'),
+('TA0001', 'Grande épée'),
+('TA0002', 'Épée longue'),
+('TA0003', 'Épée & bouclier'),
+('TA0004', 'Lames doubles'),
 ('TA0005', 'Marteau'),
-('TA0006', 'Dual Blades');
+('TA0006', 'Corne de chasse');
+('TA0007', 'Lance');
+('TA0008', 'Lancecanon');
+('TA0009', 'Morpho-hache');
+('TA0010', 'Volto-hache');
+('TA0011', 'Insectoglaive');
+('TA0012', 'Fusarbalète léger');
+('TA0013', 'Fusarbalète lourd');
+('TA0014', 'Arc');
 
 -- Insertion des utilisateurs
 INSERT INTO Utilisateur (U_id, U_Mail, U_Pseudo, U_MotDePasse) VALUES
@@ -179,19 +187,37 @@ INSERT INTO Utilisateur (U_id, U_Mail, U_Pseudo, U_MotDePasse) VALUES
 
 -- Insertion des images
 INSERT INTO Image (Im_id, I_Nom, Im_Chemin) VALUES
-('IM0001', 'Rathalos Image', 'img.png'),
-('IM0002', 'Epée Longue', 'img.png'),
-('IM0003', 'Armure de Tigrex', 'img.png'),
-('IM0004', 'Arc du Rathalos', 'images.png'),
-('IM0005', 'Potion de soin', 'img.png');
+('IM0001', 'img Grande épée', 'img.png'),
+('IM0002', 'img Epée Longue', 'img.png'),
+('IM0003', 'img Épée & bouclier', 'img.png'),
+('IM0004', 'img Lames doubles', 'images.png'),
+('IM0005', 'img Marteau', 'img.png');
+('IM0006', 'img Corne de chasse', 'img.png');
+('IM0007', 'img Lance', 'img.png');
+('IM0008', 'img Lancecanon', 'img.png');
+('IM0009', 'img Morpho-hache', 'img.png');
+('IM0010', 'img Volto-hache', 'img.png');
+('IM0011', 'img Insectoglaive', 'img.png');
+('IM0012', 'img Fusarbalète léger', 'img.png');
+('IM0013', 'img Fusarbalète lourd', 'img.png');
+('IM0014', 'img Arc', 'img.png');
+('IM0015', 'img Chatacabra', 'img.png');
+('IM0016', 'img Balahara', 'img.png');
+('IM0017', 'img Doshaguma', 'img.png');
+('IM0018', 'img Gypceros', 'img.png');
+('IM0019', 'img Rey Dau', 'img.png');
+('IM0020', 'img Arkveld', 'img.png');
+
+
+
 
 INSERT INTO Monstre (M_id, M_Nom, M_Type, M_Taille, M_Poids, M_Faiblesse, M_description, M_Element, Im_id, T_Id) VALUES
-('M0001', 'Rathalos', 'Dragon', 12.5, '2000 kg', 'Eau', 'Un dragon volant redouté, connu pour ses flammes dévastatrices', 'Feu', 'IM0001', 'TM001'),
-('M0002', 'Tigrex', 'Dragon', 10.0, '1300 kg', 'Glace', 'Un dragon féroce et puissant, avec une grande agilité.', 'Dragon', 'IM0003', 'TM001'),
-('M0003', 'Diablos', 'Dragon', 15.0, '2000 kg', 'Foudre', 'Un énorme dragon souterrain, réputé pour sa force brute.', 'Terre', 'IM0001', 'TM001'),
-('M0004', 'Zinogre', 'Canin', 8.0, '800 kg', 'Glace', 'Un monstre rapide qui utilise l’électricité pour augmenter sa vitesse.', 'Foudre', 'IM0001', 'TM003'),
-('M0005', 'Anjanath', 'Dragon', 12.0, '1500 kg', 'Eau', 'Un dinosaure préhistorique aux mâchoires puissantes.', 'Feu', 'IM0001', 'TM001'),
-('M0006', 'Kulu-Ya-Ku', 'Rapace', 4.0, '120 kg', 'Eau', 'Un oiseau rapace qui utilise des objets comme des armes.', 'Glace', 'IM0001', 'TM006');
+('M0001', 'Chatacabra', 'Amphibien', '?', '? kg', '?', "Une espèce d'amphibiens géants qui utilisent leur salive gluante pour armer de pierres leurs membres supérieurs afin de renforcer leurs attaques.", '?', 'IM0015', 'TM001'),
+('M0002', 'Balahara', 'Léviathan', '?', '? kg', '?', "Les léviathans du désert utilisent leur corps serpentin agile pour prendre au piège les imprudents dans le sable mouvant.", 'Eau', 'IM0016', 'TM002'),
+('M0003', 'Doshaguma', 'Bête à crocs', '?', '? kg', 'Foudre', "Coriaces et territoriales, les bêtes à crocs sont des créatures agressives qui peuplent des habitats très divers. On les a parfois vues se réunir en grandes meutes. ", 'Aucun', 'IM0017', 'TM003'),
+('M0004', 'Gypceros', 'Wyverne rapace', 831.2, '? kg', 'Feu', "Le Gypceros est l'une des plus grandes et des plus lourdes wyvernes rapaces connues.", 'Aucun', 'IM0018', 'TM004'),
+('M0005', 'Rey Dau', 'Wyverne volante', '?', '? kg', '?', 'Une Wyverne volante qui règne sur les Plaines venteuses en tant que prédateur ultime.', 'Foudre', 'IM0019', 'TM005'),
+('M0006', 'Arkveld', '?', '?', '? kg', '?', "L'Arkveld est un monstre de classe inconnue", '?', 'IM0020', 'TM006');
 
 -- Insertion des armures
 INSERT INTO Armure (Eq_Id, Armu_EmplacementCorps, Armu_pointResistancePhysique, Im_id) VALUES
@@ -200,8 +226,61 @@ INSERT INTO Armure (Eq_Id, Armu_EmplacementCorps, Armu_pointResistancePhysique, 
 
 -- Insertion des items
 INSERT INTO Item (Eq_Id, I_Consomable, I_Effet, Im_id) VALUES
-('EQ0003', TRUE, 'Soigne 50 HP', 'IM0005'),
-('EQ0004', TRUE, 'Restaure 100 HP', 'IM0005');
+INSERT INTO Item (Eq_Id, I_Consomable, I_Effet, Im_id) VALUES
+('EQ0001', TRUE, 'Antidote', 'IM0021'),
+('EQ0002', TRUE, 'Armorskin', 'IM0022'),
+('EQ0003', TRUE, 'Barrel Bomb', 'IM0023'),
+('EQ0004', TRUE, 'Demon Powder', 'IM0024'),
+('EQ0005', TRUE, 'Demondrug', 'IM0025'),
+('EQ0006', TRUE, 'Drugged Meat', 'IM0026'),
+('EQ0007', TRUE, 'Energy Drink', 'IM0027'),
+('EQ0008', TRUE, 'Hardshell Powder', 'IM0028'),
+('EQ0009', TRUE, 'Herbal Medicine', 'IM0029'),
+('EQ0010', TRUE, 'Herbal Powder', 'IM0030'),
+('EQ0011', TRUE, 'Immunizer Material', 'IM0031'),
+('EQ0012', TRUE, 'Large Barrel Bomb', 'IM0032'),
+('EQ0013', TRUE, 'Lifepowder', 'IM0033'),
+('EQ0014', TRUE, 'Mega Potion', 'IM0034'),
+('EQ0015', TRUE, 'Nulberry', 'IM0035'),
+('EQ0016', TRUE, 'Pitfall Trap', 'IM0036'),
+('EQ0017', TRUE, 'Poison Smoke Bomb', 'IM0037'),
+('EQ0018', TRUE, 'Poisoned Meat', 'IM0038'),
+('EQ0019', TRUE, 'Potion', 'IM0039'),
+('EQ0020', TRUE, 'Ration', 'IM0040'),
+('EQ0021', TRUE, 'Raw Meat', 'IM0041'),
+('EQ0022', TRUE, 'Shock Trap', 'IM0042'),
+('EQ0023', TRUE, 'Smoke Bomb', 'IM0043'),
+('EQ0024', TRUE, 'Tinged Meat', 'IM0044'),
+('EQ0025', TRUE, 'Tranq Bomb', 'IM0045'),
+('EQ0026', TRUE, 'Well-Done Steak', 'IM0046');
+('EQ0027', TRUE, 'Bitterbug Broth', 'IM0047'),
+('EQ0028', TRUE, 'Catalyst', 'IM0048'),
+('EQ0029', TRUE, 'Flowfern', 'IM0049'),
+('EQ0030', TRUE, 'Gunpowder', 'IM0050'),
+('EQ0031', TRUE, 'Herb', 'IM0051'),
+('EQ0032', TRUE, 'Honey', 'IM0052'),
+('EQ0033', TRUE, 'Large Barrel', 'IM0053'),
+('EQ0034', TRUE, 'Net Items', 'IM0054'),
+('EQ0035', TRUE, 'Nitroshroom', 'IM0055'),
+('EQ0036', TRUE, 'Small Barrel', 'IM0056'),
+('EQ0037', TRUE, 'Thunderbug Capacitor', 'IM0057'),
+('EQ0038', TRUE, 'Trap Tool', 'IM0058'),
+('EQ0039', TRUE, 'Antidote Herb Items', 'IM0059'),
+('EQ0040', TRUE, 'Blue Mushroom', 'IM0060'),
+('EQ0041', TRUE, 'Droolshroom', 'IM0061'),
+('EQ0042', TRUE, 'Eastern Honey', 'IM0062'),
+('EQ0043', TRUE, 'Godbug Essence', 'IM0063'),
+('EQ0044', TRUE, 'Monster Chili', 'IM0064'),
+('EQ0045', TRUE, 'Mud Shrimp', 'IM0065'),
+('EQ0046', TRUE, 'Parashroom', 'IM0066'),
+('EQ0047', TRUE, 'Sleep Herb', 'IM0067'),
+('EQ0048', TRUE, 'Wild Herb', 'IM0068'),
+('EQ0049', TRUE, 'Dung Pod', 'IM0069'),
+('EQ0050', TRUE, 'Flash Pod', 'IM0070'),
+('EQ0051', TRUE, 'Large Dung Pod', 'IM0071'),
+('EQ0052', TRUE, 'Luring Pod', 'IM0072'),
+('EQ0053', TRUE, 'Screamer Pod', 'IM0073'),
+('EQ0054', TRUE, 'Tranq Blade', 'IM0074');
 
 -- Insertion des relations Posseder
 INSERT INTO Posseder (M_id, E_id) VALUES
