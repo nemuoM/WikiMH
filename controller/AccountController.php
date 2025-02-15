@@ -45,7 +45,11 @@ class AccountController extends Controller
             $cost = ['cost' => 10];
             $pwd = password_hash($pwd, PASSWORD_BCRYPT, $cost);
 
-            DbManager::addUser($email, $username, $pwd);
+            if (DbManager::addUser($email, $username, $pwd)) {
+                echo json_encode(['success' => "Inscription réussi !"]);
+            } else {
+                echo json_encode(['error' => "Échec de l'inscription. Cette identifiant est déjà existant."]);
+            }
         }
     }
 

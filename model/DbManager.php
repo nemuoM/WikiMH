@@ -57,16 +57,10 @@ class DbManager
 
     public static function addUser($email, $username, $mdp)
     {
-        /*
-        CREATE TABLE Utilisateur(
-            U_id VARCHAR(5),
-            U_Mail VARCHAR(255),
-            U_Pseudo VARCHAR(50),
-            U_MotDePasse VARCHAR(255),
-            PRIMARY KEY(U_id)
-        );
-         */
         try {
+            if (self::getUser($username, null, false)) {
+                return false;
+            }
             $sql = 'INSERT Utilisateur(U_mail, U_Pseudo, U_MotDePasse)';
             $sql .= 'VALUES (:m, :p, :mdp)';
 
@@ -79,7 +73,7 @@ class DbManager
             $_SESSION['email'] = $email;
             $_SESSION['username'] = $username;
 
-            header('Location: ' . SERVER_URL . '/welcome/');
+            return true;
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -108,8 +102,7 @@ class DbManager
                     echo json_encode(['error' => 'Échec de la connexion. Veuillez vérifier vos identifiants.']);
                 }
             } else {
-                echo json_encode(['error' => 'Échec de la connexion. Veuillez vérifier vos identifiants.']);
-                return false;
+                return true;
             }
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
