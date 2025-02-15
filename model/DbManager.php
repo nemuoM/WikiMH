@@ -77,6 +77,8 @@ class DbManager
             $sql = 'INSERT Utilisateur(U_mail, U_Pseudo, U_MotDePasse)';
             $sql .= 'VALUES (:m, :p, :mdp)';
 
+            /* il faut récupérer le dernier id inséré */
+
             $stmt = self::$cnx->prepare($sql);
             $stmt->bindParam(':m', $email, PDO::PARAM_STR);
             $stmt->bindParam(':p', $username, PDO::PARAM_STR);
@@ -124,7 +126,7 @@ class DbManager
                     $_SESSION['email'] = $mail;
                     $_SESSION['username'] = $username;
                     echo json_encode(['success' =>
-                    'Échec de la connexion. Veuillez vérifier vos identifiants.']);
+                    'Connexion réussie !']);
                 } else {
                     echo json_encode(['error' => 'Échec de la connexion. Veuillez vérifier vos identifiants.']);
                 }
