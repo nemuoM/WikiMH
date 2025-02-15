@@ -55,6 +55,19 @@ class DbManager
         return self::$cnx;
     }
 
+    /**
+     * Ajoute un nouvel utilisateur à la base de données.
+     *
+     * Cette méthode insère un nouvel utilisateur dans la table `Utilisateur` avec les informations fournies :
+     * adresse e-mail, nom d'utilisateur et mot de passe. Si un utilisateur avec le même nom d'utilisateur existe déjà,
+     * la méthode retourne `false`. En cas de succès, les informations de l'utilisateur sont stockées dans la session.
+     *
+     * @param string $email L'adresse e-mail de l'utilisateur.
+     * @param string $username Le nom d'utilisateur.
+     * @param string $mdp Le mot de passe de l'utilisateur.
+     * @return bool Retourne `true` si l'utilisateur a été ajouté avec succès, `false` sinon.
+     * @throws PDOException Si une erreur survient lors de l'exécution de la requête SQL.
+     */
     public static function addUser($email, $username, $mdp)
     {
         try {
@@ -79,6 +92,20 @@ class DbManager
         }
     }
 
+    /**
+     * Récupère les informations d'un utilisateur à partir de son nom d'utilisateur.
+     *
+     * Cette méthode sélectionne les informations d'un utilisateur (adresse e-mail, nom d'utilisateur et mot de passe)
+     * à partir de la table `Utilisateurs` en utilisant le nom d'utilisateur fourni. Si le paramètre `$isConnection`
+     * est `true`, elle vérifie également le mot de passe fourni. En cas de succès, les informations de l'utilisateur
+     * sont stockées dans la session.
+     *
+     * @param string $username Le nom d'utilisateur.
+     * @param string|null $mdp Le mot de passe de l'utilisateur (utilisé uniquement si `$isConnection` est `true`).
+     * @param bool $isConnection Indique si la méthode est utilisée pour une connexion (vérification du mot de passe).
+     * @return bool Retourne `true` si l'utilisateur n'est pas trouvé, sinon ne retourne rien.
+     * @throws PDOException Si une erreur survient lors de l'exécution de la requête SQL.
+     */
     public static function getUser($username, $mdp, $isConnection)
     {
         try {
