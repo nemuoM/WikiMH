@@ -70,28 +70,28 @@ class DbManager
      */
     public static function addUser($email, $username, $mdp)
     {
-        try {
-            if (self::getUser($username, null, false)) {
-                return false;
+        if (self::getUser($username, null, false)) {
+            try {
+                $sql = 'INSERT Utilisateur(U_mail, U_Pseudo, U_MotDePasse)';
+                $sql .= 'VALUES (:m, :p, :mdp)';
+
+                /* il faut récupérer le dernier id inséré */
+
+                $stmt = self::$cnx->prepare($sql);
+                $stmt->bindParam(':m', $email, PDO::PARAM_STR);
+                $stmt->bindParam(':p', $username, PDO::PARAM_STR);
+                $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+
+                $stmt->execute();
+                $_SESSION['email'] = $email;
+                $_SESSION['username'] = $username;
+
+                return true;
+            } catch (PDOException $e) {
+                die('Erreur : ' . $e->getMessage());
             }
-            $sql = 'INSERT Utilisateur(U_mail, U_Pseudo, U_MotDePasse)';
-            $sql .= 'VALUES (:m, :p, :mdp)';
-
-            /* il faut récupérer le dernier id inséré */
-
-            $stmt = self::$cnx->prepare($sql);
-            $stmt->bindParam(':m', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':p', $username, PDO::PARAM_STR);
-            $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
-
-            $stmt->execute();
-            $_SESSION['email'] = $email;
-            $_SESSION['username'] = $username;
-
-            return true;
-        } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage());
         }
+        return false;
     }
 
     /**
@@ -111,7 +111,7 @@ class DbManager
     public static function getUser($username, $mdp, $isConnection)
     {
         try {
-            $sql = 'SELECT U_mail, U_Pseudo, U_MotDePasse FROM Utilisateurs WHERE U_Pseudo = :u';
+            $sql = 'SELECT U_id, U_mail, U_Pseudo, U_MotDePasse FROM Utilisateurs WHERE U_Pseudo = :u';
 
             $stmt = self::$cnx->prepare($sql);
             $stmt->bindParam(':u', $username, PDO::PARAM_STR);
@@ -119,11 +119,11 @@ class DbManager
 
             $row = $stmt->fetch();
             if ($row && $isConnection) {
-                $mail = $row['U_mail'];
                 $mdpH = $row['U_MotDePasse'];
 
                 if (password_verify($mdp, $mdpH)) {
-                    $_SESSION['email'] = $mail;
+                    $_SESSION['id'] = $row['U_id'];
+                    $_SESSION['email'] = $row['U_mail'];
                     $_SESSION['username'] = $username;
                     echo json_encode(['success' =>
                     'Connexion réussie !']);
