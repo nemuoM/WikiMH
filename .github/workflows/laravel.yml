@@ -42,9 +42,6 @@ jobs:
     - name: Vérifier l’installation de Composer
       run: ls -la vendor
 
-    - name: Vérifier .env
-      run: cat .env
-
     - name: Key Generate (Debug)
       run: php artisan key:generate --verbose
 
