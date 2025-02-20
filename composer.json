@@ -1,0 +1,10 @@
+{
+    "name": "enzod/wiki-mh",
+    "description": "Composer",
+    "autoload": {
+        "psr-4": {
+            "Enzod\\WikiMh\\": "src/"
+        }
+    },
+    "require": {}
+}
