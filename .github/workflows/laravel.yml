@@ -37,7 +37,3 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
         
   
-      
-    - name: Générer la clé d’application
-      run: php src/artisan key:generate
-
