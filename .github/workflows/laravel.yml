@@ -35,16 +35,8 @@ jobs:
         path: vendor
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: ${{ runner.os }}-composer-
-
-    - name: Install Dependencies (Debug)
-      run: composer install --prefer-dist --no-progress --no-interaction --verbose
-
-    - name: Vérifier l’installation de Composer
-      run: ls -la vendor
-
-    - name: Vérifier .env
-      run: cat .env
-
-    - name: Key Generate (Debug)
-      run: php artisan key:generate --verbose
-
+      
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        
+  
