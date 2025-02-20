@@ -36,11 +36,7 @@ jobs:
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: ${{ runner.os }}-composer-
         
-    - name: Installer les dépendances
-      run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
-    - name: Vérifier le contenu du répertoire
-      run: ls -la
+  
       
     - name: Générer la clé d’application
       run: php src/artisan key:generate
