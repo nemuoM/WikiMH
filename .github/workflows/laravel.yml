@@ -43,5 +43,5 @@ jobs:
       run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
     - name: Générer la clé d’application
-      run: php artisan key:generate
+      run: php src/artisan key:generate
 
