@@ -42,9 +42,6 @@ jobs:
     - name: Installer les dépendances
       run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-    - name: Copier .env
-      run: cp .env.example .env
-
     - name: Générer la clé d’application
       run: php artisan key:generate
 
