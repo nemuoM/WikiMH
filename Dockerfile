@@ -23,7 +23,7 @@ WORKDIR /app
 # into this layer.
 # Leverage a cache mount to /tmp/cache so that subsequent builds don't have to re-download packages.
 RUN --mount=type=bind,source=composer.json,target=composer.json \
-    --mount=type=bind,source=,target=composer.lock \
+    --mount=type=bind,source=composer.lock,target=composer.lock \
     --mount=type=cache,target=/tmp/cache \
     composer install --no-dev --no-interaction
 

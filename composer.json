@@ -3,7 +3,7 @@
     "description": "Composer",
     "autoload": {
         "psr-4": {
-            "Enzod\\WikiMh\\": "./"
+            "Enzod\\WikiMh\\": "src/"
         }
     },
     "require": {}
