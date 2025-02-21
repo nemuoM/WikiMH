@@ -1,0 +1,10 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# map neat URL to internal URL
+RewriteRule ^monstres/$     index.php?controller=view&action=monstres [nc]
+RewriteRule ^armes/$     index.php?controller=view&action=armes [nc]
+RewriteRule ^armures/$     index.php?controller=view&action=armures [nc]
+RewriteRule ^items/$     index.php?controller=view&action=items [nc]
+RewriteRule ^favoris/$     index.php?controller=view&action=favoris [nc]

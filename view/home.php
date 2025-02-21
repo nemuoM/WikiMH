@@ -15,11 +15,11 @@
     </header>
     <nav>
         <a href="<?= SERVER_URL ?>/">Accueil</a>
-        <a href="#monstres">Monstres</a>
-        <a href="#armes">Armes</a>
-        <a href="#armures">Armures</a>
-        <a href="#items">Items</a>
-        <a href="#favoris">Favoris</a>
+        <a href="<?= SERVER_URL ?>/monstres/">Monstres</a>
+        <a href="<?= SERVER_URL ?>/armes/">Armes</a>
+        <a href="<?= SERVER_URL ?>/armures/">Armures</a>
+        <a href="<?= SERVER_URL ?>/items/">Items</a>
+        <a href="<?= SERVER_URL ?>/favoris/">Favoris</a>
     </nav>
 
 

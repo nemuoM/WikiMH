@@ -21,4 +21,11 @@ class ViewController extends Controller
         $params = array();
         self::render($view, $params);
     }
+
+    public static function monstres($params)
+    {
+        $view = ROOT . '/view/monstres.php';
+        $params = array();
+        self::render($view, $params);
+    }
 }
