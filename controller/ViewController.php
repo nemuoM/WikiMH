@@ -28,4 +28,25 @@ class ViewController extends Controller
         $params = array();
         self::render($view, $params);
     }
+
+    public static function armes($params)
+    {
+        $view = ROOT . '/view/armes.php';
+        $params = array();
+        self::render($view, $params);
+    }
+
+    public static function armures($params)
+    {
+        $view = ROOT . '/view/armures.php';
+        $params = array();
+        self::render($view, $params);
+    }
+
+    public static function favoris($params)
+    {
+        $view = ROOT . '/view/favoris.php';
+        $params = array();
+        self::render($view, $params);
+    }
 }

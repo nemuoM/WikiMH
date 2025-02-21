@@ -10,12 +10,22 @@
 <body>
     <header>
         <h1>Wiki Monster Hunter</h1>
+        <div class="auth-links">
+            <!-- Si l'utilisateur est connecté -->
+            <!-- Supposons qu'on ait une variable PHP qui vérifie si l'utilisateur est connecté -->
+            <?php if (isset($_SESSION['user'])): ?>
+                <p>Bienvenue, <?= $_SESSION['user']['username'] ?> | <a href="deconnexion.php">Se déconnecter</a></p>
+            <?php else: ?>
+                <a href="connexion.php">Connexion</a> |
+                <a href="inscription.php">Inscription</a>
+            <?php endif; ?>
+        </div>
     </header>
     <nav>
-    <a href="/">Accueil</a>
-    <a href="#monstres">Monstres</a>
-    <a href="#armes">Armes</a>
-    <a href="#armures">Armures</a>
-    <a href="#items">Items</a>
-    <a href="#favoris">Favoris</a>
+        <a href="/">Accueil</a>
+        <a href="#monstres">Monstres</a>
+        <a href="#armes">Armes</a>
+        <a href="#armures">Armures</a>
+        <a href="#items">Items</a>
+        <a href="#favoris">Favoris</a>
     </nav>

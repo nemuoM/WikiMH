@@ -6,12 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki Monster Hunter</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/general.css">
 </head>
 
 <body>
     <header>
         <h1>Wiki Monster Hunter</h1>
+        <div class="auth-links">
+            <!-- Vérification de l'utilisateur connecté -->
+            <?php if (isset($_SESSION['user'])): ?>
+                <p>Bienvenue, <?= $_SESSION['user']['username'] ?> | <a href="deconnexion.php">Se déconnecter</a></p>
+            <?php else: ?>
+                <a href="../view/connexion.php">Connexion</a> |
+                <a href="../view/inscription.php">Inscription</a>
+            <?php endif; ?>
+        </div>
     </header>
     <nav>
         <a href="<?= SERVER_URL ?>/">Accueil</a>
@@ -21,8 +30,6 @@
         <a href="<?= SERVER_URL ?>/items/">Items</a>
         <a href="<?= SERVER_URL ?>/favoris/">Favoris</a>
     </nav>
-
-
 
     <div class="hero">
         <h2>Bienvenue dans l'univers de Monster Hunter</h2>
