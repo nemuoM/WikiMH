@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS `db_WikiMH`;
+CREATE DATABASE IF NOT EXISTS `db_WikiMH`;
+USE `db_WikiMH`;
+
 CREATE TABLE Elements(
    E_id VARCHAR(5),
    E_Nom VARCHAR(50),
