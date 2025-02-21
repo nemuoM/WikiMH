@@ -155,12 +155,12 @@ INSERT INTO Equipement (Eq_Id, Eq_Nom, Eq_Rarete, Eq_Prix) VALUES
 ('EQ0006', 'Armure de Rathalos', 'Rare', '35000');
 
 INSERT INTO TypeMonstre (T_Id, T_Nom) VALUES
-('TM001', 'Dragon'),
-('TM002', 'Insecte'),
-('TM003', 'Canin'),
-('TM004', 'Félidé'),
-('TM005', 'Lézard'),
-('TM006', 'Rapace');
+('TM001', 'Wyverne volante'),
+('TM002', 'Wyverne rapace'),
+('TM003', 'Bête à crocs'),
+('TM004', 'Léviathan'),
+('TM005', 'Amphibien'),
+
 
 -- Insertion des types d'arme
 INSERT INTO Type_Arme (TA_id, Ta_Nom) VALUES
@@ -186,8 +186,7 @@ INSERT INTO Utilisateur (U_id, U_Mail, U_Pseudo, U_MotDePasse) VALUES
 ('U0003', 'hunter3@example.com', 'HunterThree', 'password789');
 
 -- Insertion des images
-INSERT INTO Image (Im_id, I_Nom, Im_Chemin) VALUES
-('IM0001', 'img Grande épée', 'img.png'),
+c
 ('IM0002', 'img Epée Longue', 'img.png'),
 ('IM0003', 'img Épée & bouclier', 'img.png'),
 ('IM0004', 'img Lames doubles', 'images.png'),
@@ -207,6 +206,60 @@ INSERT INTO Image (Im_id, I_Nom, Im_Chemin) VALUES
 ('IM0018', 'img Gypceros', 'img.png');
 ('IM0019', 'img Rey Dau', 'img.png');
 ('IM0020', 'img Arkveld', 'img.png');
+('IM0021', 'img Antidote', 'img_antidote.png'),
+('IM0022', 'img Armorskin', 'img_armorskin.png'),
+('IM0023', 'img Barrel Bomb', 'img_barrel_bomb.png'),
+('IM0024', 'img Demon Powder', 'img_demon_powder.png'),
+('IM0025', 'img Demondrug', 'img_demondrug.png'),
+('IM0026', 'img Drugged Meat', 'img_drugged_meat.png'),
+('IM0027', 'img Energy Drink', 'img_energy_drink.png'),
+('IM0028', 'img Hardshell Powder', 'img_hardshell_powder.png'),
+('IM0029', 'img Herbal Medicine', 'img_herbal_medicine.png'),
+('IM0030', 'img Herbal Powder', 'img_herbal_powder.png'),
+('IM0031', 'img Immunizer Material', 'img_immunizer_material.png'),
+('IM0032', 'img Large Barrel Bomb', 'img_large_barrel_bomb.png'),
+('IM0033', 'img Lifepowder', 'img_lifepowder.png'),
+('IM0034', 'img Mega Potion', 'img_mega_potion.png'),
+('IM0035', 'img Nulberry', 'img_nulberry.png'),
+('IM0036', 'img Pitfall Trap', 'img_pitfall_trap.png'),
+('IM0037', 'img Poison Smoke Bomb', 'img_poison_smoke_bomb.png'),
+('IM0038', 'img Poisoned Meat', 'img_poisoned_meat.png'),
+('IM0039', 'img Potion', 'img_potion.png'),
+('IM0040', 'img Ration', 'img_ration.png'),
+('IM0041', 'img Raw Meat', 'img_raw_meat.png'),
+('IM0042', 'img Shock Trap', 'img_shock_trap.png'),
+('IM0043', 'img Smoke Bomb', 'img_smoke_bomb.png'),
+('IM0044', 'img Tinged Meat', 'img_tinged_meat.png'),
+('IM0045', 'img Tranq Bomb', 'img_tranq_bomb.png'),
+('IM0046', 'img Well-Done Steak', 'img_well_done_steak.png'),
+('IM0047', 'img Bitterbug Broth', 'img_bitterbug_broth.png'),
+('IM0048', 'img Catalyst', 'img_catalyst.png'),
+('IM0049', 'img Flowfern', 'img_flowfern.png'),
+('IM0050', 'img Gunpowder', 'img_gunpowder.png'),
+('IM0051', 'img Herb', 'img_herb.png'),
+('IM0052', 'img Honey', 'img_honey.png'),
+('IM0053', 'img Large Barrel', 'img_large_barrel.png'),
+('IM0054', 'img Net Items', 'img_net_items.png'),
+('IM0055', 'img Nitroshroom', 'img_nitroshroom.png'),
+('IM0056', 'img Small Barrel', 'img_small_barrel.png'),
+('IM0057', 'img Thunderbug Capacitor', 'img_thunderbug_capacitor.png'),
+('IM0058', 'img Trap Tool', 'img_trap_tool.png'),
+('IM0059', 'img Antidote Herb Items', 'img_antidote_herb_items.png'),
+('IM0060', 'img Blue Mushroom', 'img_blue_mushroom.png'),
+('IM0061', 'img Droolshroom', 'img_droolshroom.png'),
+('IM0062', 'img Eastern Honey', 'img_eastern_honey.png'),
+('IM0063', 'img Godbug Essence', 'img_godbug_essence.png'),
+('IM0064', 'img Monster Chili', 'img_monster_chili.png'),
+('IM0065', 'img Mud Shrimp', 'img_mud_shrimp.png'),
+('IM0066', 'img Parashroom', 'img_parashroom.png'),
+('IM0067', 'img Sleep Herb', 'img_sleep_herb.png'),
+('IM0068', 'img Wild Herb', 'img_wild_herb.png'),
+('IM0069', 'img Dung Pod', 'img_dung_pod.png'),
+('IM0070', 'img Flash Pod', 'img_flash_pod.png'),
+('IM0071', 'img Large Dung Pod', 'img_large_dung_pod.png'),
+('IM0072', 'img Luring Pod', 'img_luring_pod.png'),
+('IM0073', 'img Screamer Pod', 'img_screamer_pod.png'),
+('IM0074', 'img Tranq Blade', 'img_tranq_blade.png');
 
 
 
