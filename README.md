@@ -8,7 +8,7 @@ Bienvenue sur WikiMH, un projet de wiki dédié à l'univers de Monster Hunter !
 - **Architecture** : MVC
 - **Automatisation** : GitHub Actions pour les tests et le déploiement
 
-- **Support des images** :
+- **Image de l'application (statique)** :
   ![alt text](./img/image-1.png)
   ![alt text](./img/image-2.png)
   ![alt text](./img/image.png)
